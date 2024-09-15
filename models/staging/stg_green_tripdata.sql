@@ -38,7 +38,7 @@ select
     {{ dbt.safe_cast("ehail_fee", api.Column.translate_type("numeric")) }} as ehail_fee,
     {{ dbt.safe_cast("imp_surcharge", api.Column.translate_type("numeric")) }} as improvement_surcharge,
     {{ dbt.safe_cast("total_amount", api.Column.translate_type("numeric")) }} as total_amount,
-    coalesce({{ dbt.safe_cast("payment_type", api.Column.translate_type("integer")) }},0) as payment_type,
+    {{ dbt.safe_cast("payment_type", api.Column.translate_type("numeric")) }} as payment_type,
     {{ get_payment_type_description("payment_type") }} as payment_type_description
 from tripdata
 where rn = 1
